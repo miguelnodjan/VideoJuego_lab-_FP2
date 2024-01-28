@@ -104,7 +104,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <ChoiceBox prefWidth="150.0" />
+            <ChoiceBox fx:id="choiceCampo" prefWidth="150.0" />
             <Label text="Label" />
             <CheckBox fx:id="checkBoxMusica" mnemonicParsing="false" onAction="#reproducirMusica" selected="true" text="Música" textFill="#126adc">
                <font>

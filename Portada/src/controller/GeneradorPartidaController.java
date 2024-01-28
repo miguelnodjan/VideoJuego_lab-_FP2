@@ -31,17 +31,19 @@ public class GeneradorPartidaController implements Initializable{
     private File[] files;
     private Media media;
     private MediaPlayer mediaPlayer;
+    private String[] campos= {"Bosque", "Campo", "Montaña", "Desierto"};
+    private String[] reinos = {"Inglaterra", "Francia", "Castilla-Aragon", "Moros", "SacroImperioRomano"};
     
     @FXML
     private Label advertencia1;
     @FXML
     private Label advertencia2;
     @FXML
-    private ChoiceBox choiceReino2;
+    private ChoiceBox<String> choiceReino2;
     @FXML
-    private ChoiceBox choiceReino1;
+    private ChoiceBox<String> choiceReino1;
     @FXML
-    private ChoiceBox choiceCampo;
+    private ChoiceBox<String> choiceCampo;
     @FXML
     private CheckBox checkBoxAuto1;
     @FXML
@@ -79,14 +81,62 @@ public class GeneradorPartidaController implements Initializable{
         mediaPlayer.seek(mediaPlayer.getStartTime()); 
         mediaPlayer.play(); 
         });
-        
+        choiceCampo.getItems().addAll(campos);
+        choiceReino1.getItems().addAll(reinos);
+        choiceReino2.getItems().addAll(reinos);
 
 
     }
     @FXML
     private CheckBox checkBoxMusica;
     @FXML
-    
+    public void iniciarJuego(ActionEvent event){
+        advertencia1.setText("");
+        advertencia2.setText("");
+        if (checkBoxAuto1.isSelected()) {
+            int cantidadArqueros = (int)(Math.random()*2 +1);
+            int cantidadCaballeros = (int)(Math.random()*3 +1);
+            int cantidadEspadachines = (int)(Math.random()*3 +1);
+            int cantidadLanceros = (int)(Math.random()*2 +1);
+        }
+        else{
+            if (choiceReino1.getValue().equals(choiceReino2.getValue())) {
+                advertencia1.setText("No pueden ser del mismo Reino");
+                advertencia2.setText("No pueden ser del mismo Reino");
+                return;
+            }
+            if (mySpinner1.getValue() +  mySpinner2.getValue() + mySpinner3.getValue()+ mySpinner4.getValue() > 10){
+                advertencia1.setText("Sobrepasaste el límite de soldados por reino");
+                return;
+             }
+            if (choiceCampo.getValue() == null) {
+                advertencia1.setText("Selecciona un campo");
+                return;
+            }
+            int cantidadArqueros = mySpinner1.getValue();
+            int cantidadCaballeros = mySpinner4.getValue();
+            int cantidadEspadachines = mySpinner2.getValue();
+            int cantidadLanceros = mySpinner3.getValue();
+        }
+        if (checkBoxAuto2.isSelected()) {
+            
+        }
+        else{
+            if (choiceReino1.getValue().equals(choiceReino2.getValue())) {
+                advertencia1.setText("No pueden ser del mismo Reino");
+                advertencia2.setText("No pueden ser del mismo Reino");
+                return;
+            }
+            if (mySpinner5.getValue() +  mySpinner6.getValue() + mySpinner7.getValue()+ mySpinner8.getValue() > 10){
+                advertencia1.setText("Sobrepasaste el límite de soldados por reino");
+                return;
+             }
+            if (choiceCampo.getValue() == null) {
+                advertencia1.setText("Selecciona un campo");
+                return;
+            }
+        }
+    }
     @FXML
     private CheckBox checkBoxPantallaCompleta;
     private void initializeMedia() {
@@ -162,32 +212,7 @@ public class GeneradorPartidaController implements Initializable{
             mySpinner8.setDisable(false);
         }
     }
-    @FXML
-    public void aumentarCantidad(MouseEvent event) {
-        Spinner<Integer> spinner = (Spinner<Integer>) event.getSource();
-        boolean esPropio = false;
-        for (Spinner<Integer> spinnerPropio : spinnerPropios) {
-            if (spinnerPropio != null && spinnerPropio.equals(spinner)) {
-                esPropio = true;
-                break;
-            }
-        }
-
-        int sumaTotal = 0;
-        if (esPropio) {
-            for (Spinner<Integer> spinnerPropio : spinnerPropios) {
-                sumaTotal += (spinnerPropio != null) ? spinnerPropio.getValue() : 0;
-            }
-        } else {
-            for (Spinner<Integer> spinnerContrario : spinnerContrarios) {
-                sumaTotal += (spinnerContrario != null) ? spinnerContrario.getValue() : 0;
-            }
-        }
-
-        if (sumaTotal > 10) {
-            spinner.getValueFactory().setValue(spinner.getValue() - 1);
-        }
-    }
+    
 
 }
 

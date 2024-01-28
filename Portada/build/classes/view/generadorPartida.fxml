@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory?>
@@ -12,9 +14,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GeneradorPartidaController">
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="696.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GeneradorPartidaController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="304.0" style="-fx-background-color: black;">
+      <VBox alignment="TOP_CENTER" prefHeight="510.0" prefWidth="349.0" style="-fx-background-color: black;">
          <children>
             <Label text="Tu reino:" textFill="#0577b4">
                <font>
@@ -39,7 +41,7 @@
                            <font>
                               <Font size="15.0" />
                            </font></Label>
-                        <Spinner fx:id="mySpinner1" editable="false" onMouseClicked="#aumentarCantidad">
+                        <Spinner fx:id="mySpinner1" editable="false">
                             <valueFactory>
                                 <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="10" min="1" />
                             </valueFactory>
@@ -53,7 +55,7 @@
                            <font>
                               <Font size="15.0" />
                            </font></Label>
-                        <Spinner fx:id="mySpinner2" editable="false" onMouseClicked="#aumentarCantidad">
+                        <Spinner fx:id="mySpinner2" editable="false">
                             <valueFactory>
                                 <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="10" min="1" />
                             </valueFactory>
@@ -67,7 +69,7 @@
                            <font>
                               <Font size="15.0" />
                            </font></Label>
-                        <Spinner fx:id="mySpinner4" editable="false" onMouseClicked="#aumentarCantidad">
+                        <Spinner fx:id="mySpinner4" editable="false">
                             <valueFactory>
                                 <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="10" min="1" />
                             </valueFactory>
@@ -81,7 +83,7 @@
                            <font>
                               <Font size="15.0" />
                            </font></Label>
-                        <Spinner fx:id="mySpinner3" editable="false" onMouseClicked="#aumentarCantidad">
+                        <Spinner fx:id="mySpinner3" editable="false">
                             <valueFactory>
                                 <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="10" min="1" />
                             </valueFactory>
@@ -90,14 +92,29 @@
                   </VBox>
                </children>
             </GridPane>
+            <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="102.0" text="Reino" textFill="#ecbf1a">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="choiceReino1" prefWidth="150.0" />
+            <Label text="Label" />
+            <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="102.0" text="Campo" textFill="#ecbf1a">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="choiceCampo" prefWidth="150.0" />
+            <Label text="Label" />
             <CheckBox fx:id="checkBoxMusica" mnemonicParsing="false" onAction="#reproducirMusica" selected="true" text="Música" textFill="#126adc">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </CheckBox>
+            <Label fx:id="advertencia1" prefHeight="51.0" prefWidth="270.0" textFill="#d92810" />
          </children>
       </VBox>
-      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="297.0" style="-fx-background-color: black;">
+      <VBox alignment="TOP_CENTER" prefHeight="510.0" prefWidth="349.0" style="-fx-background-color: black;">
          <children>
             <Label text="Reino enemigo:" textFill="#e72c2c">
                <font>
@@ -122,7 +139,7 @@
                            <font>
                               <Font size="15.0" />
                            </font></Label>
-                        <Spinner fx:id="mySpinner5" editable="false" onMouseClicked="#aumentarCantidad">
+                        <Spinner fx:id="mySpinner5" editable="false">
                             <valueFactory>
                                 <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="10" min="1" />
                             </valueFactory>
@@ -136,7 +153,7 @@
                            <font>
                               <Font size="15.0" />
                            </font></Label>
-                        <Spinner fx:id="mySpinner6" editable="false" onMouseClicked="#aumentarCantidad">
+                        <Spinner fx:id="mySpinner6" editable="false">
                             <valueFactory>
                                 <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="10" min="1" />
                             </valueFactory>
@@ -150,7 +167,7 @@
                            <font>
                               <Font size="15.0" />
                            </font></Label>
-                        <Spinner fx:id="mySpinner7" editable="false" onMouseClicked="#aumentarCantidad">
+                        <Spinner fx:id="mySpinner7" editable="false">
                             <valueFactory>
                                 <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="10" min="1" />
                             </valueFactory>
@@ -164,7 +181,7 @@
                            <font>
                               <Font size="15.0" />
                            </font></Label>
-                        <Spinner fx:id="mySpinner8" editable="false" onMouseClicked="#aumentarCantidad">
+                        <Spinner fx:id="mySpinner8" editable="false">
                             <valueFactory>
                                 <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="10" min="1" />
                             </valueFactory>
@@ -173,11 +190,25 @@
                   </VBox>
                </children>
             </GridPane>
-            <CheckBox fx:id="checkBoxPantallaCompleta" mnemonicParsing="false" onAction="#ponerPantallacompleta" text="Pantalla Completa" textFill="#126adc">
+            <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="102.0" text="Reino" textFill="#d1610c">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="choiceReino2" prefWidth="150.0" />
+            <Label text="Label" />
+            <Button mnemonicParsing="false" onAction="#iniciarJuego" prefHeight="46.0" prefWidth="201.0" style="-fx-background-color: orange;" text="INICIAR JUEGO">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Button>
+            <Label text="Label" />
+            <CheckBox fx:id="checkBoxPantallaCompleta" mnemonicParsing="false" onAction="#ponerPantallacompleta" text="Pantalla Completa " textFill="#126adc">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </CheckBox>
+            <Label fx:id="advertencia2" prefHeight="48.0" prefWidth="251.0" textFill="#d92810" wrapText="true" />
          </children>
       </VBox>
    </children>
