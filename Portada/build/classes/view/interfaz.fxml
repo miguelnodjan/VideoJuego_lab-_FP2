@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="367.0" prefWidth="588.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.interfazController">
+    <children>
+      <AnchorPane prefHeight="375.0" prefWidth="219.0" style="-fx-background-color: black;">
+         <children>
+            <VBox layoutX="30.0" layoutY="37.0" prefHeight="255.0" prefWidth="174.0" spacing="5.0">
+               <children>
+                  <Label text="Usuario" textFill="#8f5e04">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="usuarioIngresar" onKeyTyped="#eventKey" promptText="ingrese su nombre de usuario" style="-fx-background-color: grey;">
+                     
+                  </TextField>
+                  <Label text="Contraseña" textFill="#8f5e04">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="contraseñaIngresar" onKeyTyped="#eventKey" promptText="ingrese su contraseña" style="-fx-background-color: grey;" />
+                  <Button fx:id="botonIngresar" mnemonicParsing="false" onAction="#eventAction" style="-fx-background-color: orange; -fx-background-radius: 12px;" text="ingresar">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     
+                  </Button>
+                  <Label fx:id="labelError" prefHeight="85.0" prefWidth="174.0" textFill="#fa4343" wrapText="true" />
+               </children>
+            </VBox>
+            <Label layoutX="18.0" layoutY="5.0" text="INGRESAR" textFill="#c1b100">
+               <font>
+                  <Font name="Bell MT" size="15.0" />
+               </font>
+            </Label>
+            <VBox layoutX="23.0" layoutY="293.0" prefHeight="74.0" prefWidth="174.0" spacing="5.0">
+               <children>
+                  <Label text="¿No tienes cuenta?" textFill="WHITE" />
+                  <Button fx:id="botonCrearCuenta" mnemonicParsing="false" onAction="#eventActionRegistrarse" style="-fx-background-color: orange; -fx-background-radius: 10px;" text="crear cuenta">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <VBox layoutX="218.0" prefHeight="375.0" prefWidth="370.0">
+         <children>
+            <ImageView fitHeight="375.0" fitWidth="381.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/presentación4.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+    </children>
+</AnchorPane>
