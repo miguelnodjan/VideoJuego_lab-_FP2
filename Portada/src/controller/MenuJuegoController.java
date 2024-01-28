@@ -83,6 +83,7 @@ public class MenuJuegoController implements Initializable {
     @FXML
     public void crearNuevaPartida(ActionEvent event){
         try {
+            mediaPlayer.stop();
             loadStage("/view/generadorPartida.fxml", event);
         } catch (IOException ex) {
             Logger.getLogger(interfazController.class.getName()).log(Level.SEVERE, null, ex);
