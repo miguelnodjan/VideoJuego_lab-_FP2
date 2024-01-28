@@ -19,6 +19,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -29,7 +30,11 @@ public class GeneradorPartidaController implements Initializable{
     private File[] files;
     private Media media;
     private MediaPlayer mediaPlayer;
-
+    
+    @FXML
+    private CheckBox checkBoxAuto1;
+    @FXML
+    private CheckBox checkBoxAuto2;
     @FXML
     private Spinner<Integer> mySpinner1;
 
@@ -67,6 +72,7 @@ public class GeneradorPartidaController implements Initializable{
 
 
     }
+    
     @FXML
     private CheckBox checkBoxMusica;
     @FXML
@@ -111,6 +117,37 @@ public class GeneradorPartidaController implements Initializable{
         }
         else{
             stage.setFullScreen(false);
+        }
+    }
+    @FXML
+    public void generarAutomaticamente1(ActionEvent event){
+        if (checkBoxAuto1.isSelected()) {
+            mySpinner1.setDisable(true);
+            mySpinner2.setDisable(true);
+            mySpinner3.setDisable(true);
+            mySpinner4.setDisable(true);
+        }
+        else{
+            mySpinner1.setDisable(false);
+            mySpinner2.setDisable(false);
+            mySpinner3.setDisable(false);
+            mySpinner4.setDisable(false);
+        }
+       
+    }
+    @FXML
+    public void generarAutomaticamente2(ActionEvent event){
+        if (checkBoxAuto2.isSelected()) {
+            mySpinner5.setDisable(true);
+            mySpinner6.setDisable(true);
+            mySpinner7.setDisable(true);
+            mySpinner8.setDisable(true);
+        }
+        else{
+             mySpinner5.setDisable(false);
+            mySpinner6.setDisable(false);
+            mySpinner7.setDisable(false);
+            mySpinner8.setDisable(false);
         }
     }
     @FXML

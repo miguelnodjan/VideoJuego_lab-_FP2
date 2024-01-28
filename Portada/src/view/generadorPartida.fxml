@@ -14,15 +14,15 @@
 
 <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GeneradorPartidaController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="304.0" style="-fx-background-color: white;">
+      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="304.0" style="-fx-background-color: black;">
          <children>
             <Label text="Tu reino:" textFill="#0577b4">
                <font>
                   <Font name="Bernard MT Condensed" size="25.0" />
                </font>
             </Label>
-            <CheckBox mnemonicParsing="false" text="generar automaticamente" textFill="#ecbf1a" />
-            <GridPane alignment="TOP_CENTER" prefHeight="302.0" prefWidth="303.0">
+            <CheckBox fx:id="checkBoxAuto1" mnemonicParsing="false" onAction="#generarAutomaticamente1" text="generar automaticamente" textFill="#ecbf1a" />
+            <GridPane fx:id="gridPane1" alignment="TOP_CENTER" prefHeight="302.0" prefWidth="303.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.80003662109374" minWidth="10.0" prefWidth="151.80003662109374" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.0" minWidth="10.0" prefWidth="150.99996337890622" />
@@ -35,7 +35,10 @@
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <ImageView fitHeight="94.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="102.0" text="Arqueros" />
+                        <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="102.0" text="Arqueros" textFill="#ecbf1a">
+                           <font>
+                              <Font size="15.0" />
+                           </font></Label>
                         <Spinner fx:id="mySpinner1" editable="false" onMouseClicked="#aumentarCantidad">
                             <valueFactory>
                                 <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="10" min="1" />
@@ -46,7 +49,10 @@
                   <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                      <children>
                         <ImageView fitHeight="94.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="102.0" text="Arqueros" />
+                        <Label alignment="TOP_CENTER" contentDisplay="TOP" prefHeight="22.0" prefWidth="149.0" text="Espadachines" textFill="#ecbf1a">
+                           <font>
+                              <Font size="15.0" />
+                           </font></Label>
                         <Spinner fx:id="mySpinner2" editable="false" onMouseClicked="#aumentarCantidad">
                             <valueFactory>
                                 <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="10" min="1" />
@@ -57,7 +63,10 @@
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                      <children>
                         <ImageView fitHeight="94.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="102.0" text="Arqueros" />
+                        <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="102.0" text="Caballeros" textFill="#ecbf1a">
+                           <font>
+                              <Font size="15.0" />
+                           </font></Label>
                         <Spinner fx:id="mySpinner4" editable="false" onMouseClicked="#aumentarCantidad">
                             <valueFactory>
                                 <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="10" min="1" />
@@ -68,7 +77,10 @@
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <ImageView fitHeight="94.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="102.0" text="Arqueros" />
+                        <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="102.0" text="Lanceros" textFill="#ecbf1a">
+                           <font>
+                              <Font size="15.0" />
+                           </font></Label>
                         <Spinner fx:id="mySpinner3" editable="false" onMouseClicked="#aumentarCantidad">
                             <valueFactory>
                                 <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="10" min="1" />
@@ -87,13 +99,13 @@
       </VBox>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="297.0" style="-fx-background-color: black;">
          <children>
-            <Label text="Reino enemigo:" textFill="#b46262">
+            <Label text="Reino enemigo:" textFill="#e72c2c">
                <font>
                   <Font name="Bernard MT Condensed" size="25.0" />
                </font>
             </Label>
-            <CheckBox mnemonicParsing="false" text="generar automaticamente" textFill="WHITE" />
-            <GridPane prefHeight="302.0" prefWidth="303.0">
+            <CheckBox fx:id="checkBoxAuto2" mnemonicParsing="false" onAction="#generarAutomaticamente2" text="generar automaticamente" textFill="#d1610c" />
+            <GridPane fx:id="gridPane2" prefHeight="302.0" prefWidth="303.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.80003662109374" minWidth="10.0" prefWidth="151.80003662109374" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.0" minWidth="10.0" prefWidth="150.99996337890622" />
@@ -106,7 +118,10 @@
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <ImageView fitHeight="94.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="102.0" text="Arqueros" />
+                        <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="102.0" text="Arqueros" textFill="#d1610c">
+                           <font>
+                              <Font size="15.0" />
+                           </font></Label>
                         <Spinner fx:id="mySpinner5" editable="false" onMouseClicked="#aumentarCantidad">
                             <valueFactory>
                                 <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="10" min="1" />
@@ -117,7 +132,10 @@
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                      <children>
                         <ImageView fitHeight="94.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="102.0" text="Arqueros" />
+                        <Label alignment="TOP_CENTER" prefHeight="22.0" prefWidth="115.0" text="Espadachines" textFill="#d1610c">
+                           <font>
+                              <Font size="15.0" />
+                           </font></Label>
                         <Spinner fx:id="mySpinner6" editable="false" onMouseClicked="#aumentarCantidad">
                             <valueFactory>
                                 <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="10" min="1" />
@@ -128,7 +146,10 @@
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                      <children>
                         <ImageView fitHeight="94.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="102.0" text="Arqueros" />
+                        <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="102.0" text="Caballeros" textFill="#d1610c">
+                           <font>
+                              <Font size="15.0" />
+                           </font></Label>
                         <Spinner fx:id="mySpinner7" editable="false" onMouseClicked="#aumentarCantidad">
                             <valueFactory>
                                 <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="10" min="1" />
@@ -139,7 +160,10 @@
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <ImageView fitHeight="94.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="102.0" text="Arqueros" />
+                        <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="102.0" text="Lanceros" textFill="#d1610c">
+                           <font>
+                              <Font size="15.0" />
+                           </font></Label>
                         <Spinner fx:id="mySpinner8" editable="false" onMouseClicked="#aumentarCantidad">
                             <valueFactory>
                                 <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="1" max="10" min="1" />
