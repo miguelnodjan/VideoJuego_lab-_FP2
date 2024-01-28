@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
@@ -31,6 +32,16 @@ public class GeneradorPartidaController implements Initializable{
     private Media media;
     private MediaPlayer mediaPlayer;
     
+    @FXML
+    private Label advertencia1;
+    @FXML
+    private Label advertencia2;
+    @FXML
+    private ChoiceBox choiceReino2;
+    @FXML
+    private ChoiceBox choiceReino1;
+    @FXML
+    private ChoiceBox choiceCampo;
     @FXML
     private CheckBox checkBoxAuto1;
     @FXML
@@ -72,9 +83,10 @@ public class GeneradorPartidaController implements Initializable{
 
 
     }
-    
     @FXML
     private CheckBox checkBoxMusica;
+    @FXML
+    
     @FXML
     private CheckBox checkBoxPantallaCompleta;
     private void initializeMedia() {
