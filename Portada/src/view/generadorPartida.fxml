@@ -23,7 +23,6 @@
                   <Font name="Bernard MT Condensed" size="25.0" />
                </font>
             </Label>
-            <CheckBox fx:id="checkBoxAuto1" mnemonicParsing="false" onAction="#generarAutomaticamente1" text="generar automaticamente" textFill="#ecbf1a" />
             <GridPane fx:id="gridPane1" alignment="TOP_CENTER" prefHeight="302.0" prefWidth="303.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.80003662109374" minWidth="10.0" prefWidth="151.80003662109374" />
@@ -121,7 +120,6 @@
                   <Font name="Bernard MT Condensed" size="25.0" />
                </font>
             </Label>
-            <CheckBox fx:id="checkBoxAuto2" mnemonicParsing="false" onAction="#generarAutomaticamente2" text="generar automaticamente" textFill="#d1610c" />
             <GridPane fx:id="gridPane2" prefHeight="302.0" prefWidth="303.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.80003662109374" minWidth="10.0" prefWidth="151.80003662109374" />
@@ -208,6 +206,10 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </CheckBox>
+            <CheckBox fx:id="checkBoxAuto1" mnemonicParsing="false" onAction="#generarAutomaticamente1" text="generar automaticamente" textFill="#126adc">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></CheckBox>
             <Label fx:id="advertencia2" prefHeight="48.0" prefWidth="251.0" textFill="#d92810" wrapText="true" />
          </children>
       </VBox>

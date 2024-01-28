@@ -54,8 +54,7 @@ public class GeneradorPartidaController implements Initializable{
     private ChoiceBox<String> choiceCampo;
     @FXML
     private CheckBox checkBoxAuto1;
-    @FXML
-    private CheckBox checkBoxAuto2;
+    
     @FXML
     private Spinner<Integer> mySpinner1;
 
@@ -102,10 +101,7 @@ public class GeneradorPartidaController implements Initializable{
         advertencia1.setText("");
         advertencia2.setText("");
         if (checkBoxAuto1.isSelected()) {
-            int cantidadArqueros = (int)(Math.random()*2 +1);
-            int cantidadCaballeros = (int)(Math.random()*3 +1);
-            int cantidadEspadachines = (int)(Math.random()*3 +1);
-            int cantidadLanceros = (int)(Math.random()*2 +1);
+            enviarABaseDEDatos(choiceReino1.getValue(), choiceReino2.getValue(), choiceCampo.getValue());
         }
         else{
             if (choiceReino1.getValue().equals(choiceReino2.getValue())) {
@@ -117,33 +113,14 @@ public class GeneradorPartidaController implements Initializable{
                 advertencia1.setText("Sobrepasaste el límite de soldados por reino");
                 return;
              }
-            if (choiceCampo.getValue() == null) {
-                advertencia1.setText("Selecciona un campo");
+            if (choiceCampo.getValue() == null || choiceReino1.getValue() == null || choiceReino2.getValue() == null) {
+                advertencia1.setText("No pueden haber espacios en blanco");
                 return;
             }
-            int cantidadArqueros = mySpinner1.getValue();
-            int cantidadCaballeros = mySpinner4.getValue();
-            int cantidadEspadachines = mySpinner2.getValue();
-            int cantidadLanceros = mySpinner3.getValue();
-        }
-        if (checkBoxAuto2.isSelected()) {
+            enviaABaseDeDatos(choiceReino1.getValue(), choiceReino2.getValue(), choiceCampo.getValue(), mySpinner1.getValue(), mySpinner5.getValue(), mySpinner4.getValue(), mySpinner7.getValue(), mySpinner3.getValue(), mySpinner8.getValue(), mySpinner2.getValue(), mySpinner6.getValue());
             
         }
-        else{
-            if (choiceReino1.getValue().equals(choiceReino2.getValue())) {
-                advertencia1.setText("No pueden ser del mismo Reino");
-                advertencia2.setText("No pueden ser del mismo Reino");
-                return;
-            }
-            if (mySpinner5.getValue() +  mySpinner6.getValue() + mySpinner7.getValue()+ mySpinner8.getValue() > 10){
-                advertencia1.setText("Sobrepasaste el límite de soldados por reino");
-                return;
-             }
-            if (choiceCampo.getValue() == null) {
-                advertencia1.setText("Selecciona un campo");
-                return;
-            }
-        }
+        
     }
     @FXML
     private CheckBox checkBoxPantallaCompleta;
@@ -196,30 +173,24 @@ public class GeneradorPartidaController implements Initializable{
             mySpinner2.setDisable(true);
             mySpinner3.setDisable(true);
             mySpinner4.setDisable(true);
-        }
-        else{
-            mySpinner1.setDisable(false);
-            mySpinner2.setDisable(false);
-            mySpinner3.setDisable(false);
-            mySpinner4.setDisable(false);
-        }
-       
-    }
-    @FXML
-    public void generarAutomaticamente2(ActionEvent event){
-        if (checkBoxAuto2.isSelected()) {
             mySpinner5.setDisable(true);
             mySpinner6.setDisable(true);
             mySpinner7.setDisable(true);
             mySpinner8.setDisable(true);
         }
         else{
-             mySpinner5.setDisable(false);
+            mySpinner1.setDisable(false);
+            mySpinner2.setDisable(false);
+            mySpinner3.setDisable(false);
+            mySpinner4.setDisable(false);
+            mySpinner5.setDisable(false);
             mySpinner6.setDisable(false);
             mySpinner7.setDisable(false);
             mySpinner8.setDisable(false);
         }
+       
     }
+    
     public void enviarABaseDEDatos(String reino1, String reino2, String Campo){
         try {
                 // Establecer conexión con la base de datos
