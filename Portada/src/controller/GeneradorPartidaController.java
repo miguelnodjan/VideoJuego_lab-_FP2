@@ -5,9 +5,16 @@
 package controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -24,6 +31,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 public class GeneradorPartidaController implements Initializable{
     private File directory;
@@ -212,7 +220,82 @@ public class GeneradorPartidaController implements Initializable{
             mySpinner8.setDisable(false);
         }
     }
-    
+    public void enviarABaseDEDatos(String reino1, String reino2, String Campo){
+        try {
+                // Establecer conexión con la base de datos
+                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/persona?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
+
+                // Crear la consulta SQL para insertar el nuevo usuario
+                String query = "INSERT INTO partidas(nombreReino1, nombreReino2, campo, cantidadArqueros1, cantidadArqueros2, cantidadCaballeros1, cantidadCaballeros2, cantidadLanceros1, cantidadLanceros2, cantidadEspadachines1, cantidadEspadachines2) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+                try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                    preparedStatement.setString(1, reino1);
+                    preparedStatement.setString(2, reino2);
+                    preparedStatement.setString(3, Campo);
+                    preparedStatement.setInt(4, (int)(Math.random()*2 +1));
+                    preparedStatement.setInt(5, (int)(Math.random()*2 +1));
+                    preparedStatement.setInt(6, (int)(Math.random()*3 +1));
+                    preparedStatement.setInt(7, (int)(Math.random()*3 +1));
+                    preparedStatement.setInt(8, (int)(Math.random()*2 +1));
+                    preparedStatement.setInt(9, (int)(Math.random()*2 +1));
+                    preparedStatement.setInt(10, (int)(Math.random()*3 +1));
+                    preparedStatement.setInt(11, (int)(Math.random()*3 +1));
+                    
+                    int rowsAffected = preparedStatement.executeUpdate();
+
+                    if (rowsAffected > 0) {
+                        JOptionPane.showMessageDialog(null, "Registro correcto, disfruta del juego");
+                        
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error al registrar");
+                    }
+                }
+
+                // Cerrar la conexión
+                connection.close();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(InterfazRegistroController.class.getName()).log(Level.SEVERE, null, ex);
+                // Puedes agregar aquí la lógica para mostrar un mensaje de error
+            }
+    }
+    public  void enviaABaseDeDatos(String reino1, String reino2, String Campo, int cantidadArqueros1, int cantidadArqueros2, int cantidadCaballeros1, int cantidadCaballeros2, int cantidadLanceros1, int cantidadlanceros2, int cantidadEspadachines1, int cantidadEspadachines2){
+        try {
+                // Establecer conexión con la base de datos
+                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/persona?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
+
+                // Crear la consulta SQL para insertar el nuevo usuario
+                String query = "INSERT INTO partidas(nombreReino1, nombreReino2, campo, cantidadArqueros1, cantidadArqueros2, cantidadCaballeros1, cantidadCaballeros2, cantidadLanceros1, cantidadLanceros2, cantidadEspadachines1, cantidadEspadachines2) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+                try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                    preparedStatement.setString(1, reino1);
+                    preparedStatement.setString(2, reino2);
+                    preparedStatement.setString(3, Campo);
+                    preparedStatement.setInt(4, cantidadArqueros1);
+                    preparedStatement.setInt(5, cantidadArqueros2);
+                    preparedStatement.setInt(6, cantidadCaballeros1);
+                    preparedStatement.setInt(7, cantidadCaballeros2);
+                    preparedStatement.setInt(8, cantidadLanceros1);
+                    preparedStatement.setInt(9, cantidadlanceros2);
+                    preparedStatement.setInt(10, cantidadEspadachines1);
+                    preparedStatement.setInt(11, cantidadEspadachines2);
+                    
+                    int rowsAffected = preparedStatement.executeUpdate();
+
+                    if (rowsAffected > 0) {
+                        JOptionPane.showMessageDialog(null, "Registro correcto, disfruta del juego");
+                        
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error al registrar");
+                    }
+                }
+
+                // Cerrar la conexión
+                connection.close();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(InterfazRegistroController.class.getName()).log(Level.SEVERE, null, ex);
+                // Puedes agregar aquí la lógica para mostrar un mensaje de error
+            }
+    }
 
 }
 
