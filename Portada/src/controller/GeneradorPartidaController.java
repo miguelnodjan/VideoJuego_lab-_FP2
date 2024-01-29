@@ -171,27 +171,35 @@ public class GeneradorPartidaController implements Initializable {
     public void generarAutomaticamente1(ActionEvent event) {
         if (checkBoxAuto1.isSelected()) {
             desactivarSpinners();
+            enviarABaseDEDatos(choiceReino1.getValue(), choiceReino2.getValue(), choiceCampo.getValue());
         } else {
             activarSpinners();
         }
     }
 
     private void desactivarSpinners() {
-        for (Spinner spinner : spinnerPropios) {
-            spinner.setDisable(true);
-        }
-        for (Spinner spinner : spinnerContrarios) {
-            spinner.setDisable(true);
-        }
+        mySpinner1.setDisable(true);
+        mySpinner2.setDisable(true);
+        mySpinner3.setDisable(true);
+        mySpinner4.setDisable(true);
+        mySpinner5.setDisable(true);
+        mySpinner6.setDisable(true);
+        mySpinner7.setDisable(true);
+        mySpinner8.setDisable(true);
+        
+        
     }
 
     private void activarSpinners() {
-        for (Spinner spinner : spinnerPropios) {
-            spinner.setDisable(false);
-        }
-        for (Spinner spinner : spinnerContrarios) {
-            spinner.setDisable(false);
-        }
+        mySpinner1.setDisable(false);
+        mySpinner2.setDisable(false);
+        mySpinner3.setDisable(false);
+        mySpinner4.setDisable(false);
+        mySpinner5.setDisable(false);
+        mySpinner6.setDisable(false);
+        mySpinner7.setDisable(false);
+        mySpinner8.setDisable(false);
+        
     }
     public void añadirSoldados(String tipoSoldado, int cantidad, Soldado[] ejercito, String reino){
         int controlador = ejercito.length;
