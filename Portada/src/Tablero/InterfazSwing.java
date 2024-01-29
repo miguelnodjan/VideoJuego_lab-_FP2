@@ -8,8 +8,17 @@ import javax.swing.JTextField;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.ArrayList;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class InterfazSwing {
+    private File directory;
+    private ArrayList<File> songs;
+    private File[] files;
+    private Media media;
+    private MediaPlayer mediaPlayer;
     private Soldado[] ejercito1;
     private Soldado[] ejercito2;
     private String campo;
@@ -19,6 +28,12 @@ public class InterfazSwing {
     private JButton boton = new JButton("Nuevo Juego");
     
     public InterfazSwing(String campo, String reino1, String reino2, Soldado[] ejercito1, Soldado[] ejercito2){
+        songs = new ArrayList<File>();
+        initializeMedia();
+        mediaPlayer.setOnEndOfMedia(() -> {
+            mediaPlayer.seek(mediaPlayer.getStartTime());
+            mediaPlayer.play();
+        });
         this.campo = campo;
         this.reino1 = reino1;
         this.reino2 = reino2;
@@ -152,6 +167,28 @@ public class InterfazSwing {
     frame.setVisible(true);
     }
  
-        
+    private void initializeMedia() {
+        // Configura el directorio y obtiene la lista de archivos
+        directory = new File("src/Audios");
+        files = directory.listFiles();
+
+        if (files != null) {
+            // Agrega archivos a la lista de canciones
+            for (File file : files) {
+                songs.add(file);
+            }
+        }
+
+        // Inicializa la primera canción
+        if (!songs.isEmpty()) {
+            media = new Media(songs.get(5).toURI().toString());
+            mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.play();
+        } else {
+            // Manejar el caso cuando no hay canciones disponibles
+            System.out.println("No se encontraron canciones en el directorio 'Audios'");
+        }
     }
+}
+
 
