@@ -1,5 +1,11 @@
 package controller;
 
+import Tablero.Arquero;
+import Tablero.Caballero;
+import Tablero.Espadachin;
+import Tablero.InterfazSwing;
+import Tablero.Lancero;
+import Tablero.Soldado;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -11,7 +17,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import java.sql.ResultSet;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -187,6 +193,52 @@ public class GeneradorPartidaController implements Initializable {
             spinner.setDisable(false);
         }
     }
+    public void añadirSoldados(String tipoSoldado, int cantidad, Soldado[] ejercito, String reino){
+        int controlador = ejercito.length;
+        for (int i = 0; i < cantidad; i++) {
+            switch (tipoSoldado) {
+            case "caballero":
+                for (int j = 0; j < controlador; j++) {
+                    if (ejercito[j] == null) {
+                        ejercito[j] =new Caballero();
+                        ejercito[j].setNombre(reino + " Caballero" + (j+1));
+                        break;
+                    }
+                }
+                break;
+            case "arquero":
+                for (int j = 0; j < controlador; j++) {
+                    if (ejercito[j] == null) {
+                        ejercito[j] =new Arquero();
+                        ejercito[j].setNombre(reino + " Arquero" + (j+1));
+                        break;
+                    }
+                }
+                break;
+            case "espadachin":
+                for (int j = 0; j < controlador; j++) {
+                    if (ejercito[j] == null) {
+                        ejercito[j] =new Espadachin();
+                        ejercito[j].setNombre(reino + " Espadachin" + (j+1));
+                        break;
+                    }
+                }
+                break;
+            case "lancero":
+                for (int j = 0; j < controlador; j++) {
+                    if (ejercito[j] == null) {
+                        ejercito[j] =new Lancero();
+                        ejercito[j].setNombre(reino + " Lancero" + (j+1));
+                        break;
+                    }
+                }
+                break;
+            default:
+                throw new AssertionError();
+            }
+        }
+        
+    }
 
     public void enviarABaseDEDatos(String reino1, String reino2, String Campo) {
         try {
@@ -213,8 +265,63 @@ public class GeneradorPartidaController implements Initializable {
                 int rowsAffected = preparedStatement.executeUpdate();
 
                 if (rowsAffected > 0) {
-                    JOptionPane.showMessageDialog(null, "Registro correcto, disfruta del juego");
+                    try {
+                        // Establecer conexión con la base de datos
+                        Connection connection1 = DriverManager.getConnection(
+                                "jdbc:mysql://localhost:3306/persona?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+                                "root", "");
 
+                        
+                        String query1 = "SELECT * FROM partidas ORDER BY id DESC LIMIT 1";
+
+                        try (PreparedStatement preparedStatement1 = connection1.prepareStatement(query1)) {
+                            ResultSet resultSet = preparedStatement1.executeQuery();
+
+                            if (resultSet.next()) {
+                                
+                                String nombreReino1 = resultSet.getString("nombreReino1");
+                                String nombreReino2 = resultSet.getString("nombreReino2");
+                                String campo = resultSet.getString("campo");
+                                int cantidadArqueros1 = resultSet.getInt("cantidadArqueros1");
+                                int cantidadArqueros2 = resultSet.getInt("cantidadArqueros2");
+                                int cantidadCaballeros1 = resultSet.getInt("cantidadCaballeros1");
+                                int cantidadCaballeros2 = resultSet.getInt("cantidadCaballeros2");
+                                int cantidadLanceros1 = resultSet.getInt("cantidadLanceros1");
+                                int cantidadLanceros2 = resultSet.getInt("cantidadLanceros2");
+                                int cantidadEspadachines1 = resultSet.getInt("cantidadEspadachines1");
+                                int cantidadEspadachines2 = resultSet.getInt("cantidadEspadachines2");
+                                
+                                int cantidadSoldados1 = cantidadArqueros1 + cantidadCaballeros1 + cantidadEspadachines1 + cantidadLanceros1;
+                                int cantidadSoldados2 = cantidadArqueros2 + cantidadCaballeros2 + cantidadEspadachines2 + cantidadLanceros2;
+                                Soldado[] soldados1 = new Soldado[cantidadSoldados1];
+                                Soldado[] soldados2 = new Soldado[cantidadSoldados2];
+                                añadirSoldados("arquero", cantidadArqueros1, soldados1, nombreReino1);
+                                añadirSoldados("arquero", cantidadArqueros2, soldados2, nombreReino2);
+                                añadirSoldados("caballero", cantidadCaballeros1, soldados1, nombreReino1);
+                                añadirSoldados("caballero", cantidadCaballeros2, soldados2, nombreReino2);
+                                añadirSoldados("lancero", cantidadLanceros1, soldados1, nombreReino1);
+                                añadirSoldados("lancero", cantidadLanceros2, soldados2, nombreReino2);
+                                añadirSoldados("espadachin", cantidadEspadachines1, soldados1, nombreReino1);
+                                añadirSoldados("espadachin", cantidadEspadachines2, soldados2, nombreReino2);
+                                mediaPlayer.stop();
+                                media = new Media(songs.get(0).toURI().toString());
+                                mediaPlayer = new MediaPlayer(media);
+                                mediaPlayer.play();
+                                
+                                new InterfazSwing(campo, nombreReino1, nombreReino2, soldados1, soldados2);
+                                
+                            } else {
+                                System.out.println("No hay partidas registradas");
+                            }
+                        }
+
+                        
+                        connection1.close();
+
+                    } catch (SQLException ex) {
+                        Logger.getLogger(InterfazRegistroController.class.getName()).log(Level.SEVERE, null, ex);
+                        
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Error al registrar");
                 }
@@ -256,7 +363,60 @@ public class GeneradorPartidaController implements Initializable {
                 int rowsAffected = preparedStatement.executeUpdate();
 
                 if (rowsAffected > 0) {
-                    JOptionPane.showMessageDialog(null, "Registro correcto, disfruta del juego");
+                    try {
+                        // Establecer conexión con la base de datos
+                        Connection connection1 = DriverManager.getConnection(
+                                "jdbc:mysql://localhost:3306/persona?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+                                "root", "");
+
+                        
+                        String query1 = "SELECT * FROM partidas ORDER BY id DESC LIMIT 1";
+
+                        try (PreparedStatement preparedStatement1 = connection1.prepareStatement(query1)) {
+                            ResultSet resultSet = preparedStatement1.executeQuery();
+
+                            if (resultSet.next()) {
+                                
+                                String nombreReino1a = resultSet.getString("nombreReino1");
+                                String nombreReino2a = resultSet.getString("nombreReino2");
+                                String campo = resultSet.getString("campo");
+                                int cantidadArqueros1a = resultSet.getInt("cantidadArqueros1");
+                                int cantidadArqueros2a = resultSet.getInt("cantidadArqueros2");
+                                int cantidadCaballeros1a = resultSet.getInt("cantidadCaballeros1");
+                                int cantidadCaballeros2a = resultSet.getInt("cantidadCaballeros2");
+                                int cantidadLanceros1a = resultSet.getInt("cantidadLanceros1");
+                                int cantidadLanceros2a = resultSet.getInt("cantidadLanceros2");
+                                int cantidadEspadachines1a = resultSet.getInt("cantidadEspadachines1");
+                                int cantidadEspadachines2a = resultSet.getInt("cantidadEspadachines2");
+                                
+                                int cantidadSoldados1 = cantidadArqueros1a + cantidadCaballeros1a + cantidadEspadachines1a + cantidadLanceros1a;
+                                int cantidadSoldados2 = cantidadArqueros2a + cantidadCaballeros2a + cantidadEspadachines2a + cantidadLanceros2a;
+
+                                Soldado[] soldados1 = new Soldado[cantidadSoldados1];
+                                Soldado[] soldados2 = new Soldado[cantidadSoldados2];
+
+                                añadirSoldados("arquero", cantidadArqueros1a, soldados1, nombreReino1a);
+                                añadirSoldados("arquero", cantidadArqueros2a, soldados2, nombreReino2a); // Aquí corrige el nombre de la variable
+                                añadirSoldados("caballero", cantidadCaballeros1a, soldados1, nombreReino1a);
+                                añadirSoldados("caballero", cantidadCaballeros2a, soldados2, nombreReino2a);
+                                añadirSoldados("lancero", cantidadLanceros1a, soldados1, nombreReino1a);
+                                añadirSoldados("lancero", cantidadLanceros2a, soldados2, nombreReino2a);
+                                añadirSoldados("espadachin", cantidadEspadachines1a, soldados1, nombreReino1a);
+                                añadirSoldados("espadachin", cantidadEspadachines2a, soldados2, nombreReino2a);
+
+                                new InterfazSwing(campo, reino1, reino2, soldados1, soldados2);
+                            } else {
+                                System.out.println("No hay partidas registradas");
+                            }
+                        }
+
+                        
+                        connection1.close();
+
+                    } catch (SQLException ex) {
+                        Logger.getLogger(InterfazRegistroController.class.getName()).log(Level.SEVERE, null, ex);
+                        
+                    }
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Error al registrar");

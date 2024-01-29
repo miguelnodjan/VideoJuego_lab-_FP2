@@ -63,9 +63,11 @@ public class Ejercito {
                 fila = (int) (Math.random() * 10);
                 columna = (int) (Math.random() * 10);
             } while (posicionOcupada(ejercito, fila, columna));
-    
-            ejercito[i].setFila(fila);
-            ejercito[i].setColumna(columna);
+            if (ejercito[i] != null) {
+                ejercito[i].setFila(fila);
+                ejercito[i].setColumna(columna);
+            }
+            
         }
     
         return ejercito;
@@ -79,9 +81,11 @@ public class Ejercito {
                 fila = (int) (Math.random() * 10);
                 columna = (int) (Math.random() * 10);
             } while (posicionOcupada(ejercito, fila, columna));
-    
-            ejercito2[i].setFila(fila);
-            ejercito2[i].setColumna(columna);
+            if (ejercito2[i] != null) {
+                ejercito2[i].setFila(fila);
+                ejercito2[i].setColumna(columna);
+            }
+            
         }
     
         return ejercito;
