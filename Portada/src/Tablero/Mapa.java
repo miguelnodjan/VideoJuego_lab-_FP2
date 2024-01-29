@@ -1,4 +1,4 @@
-package Final;
+package Tablero;
 
 import java.util.*;
 

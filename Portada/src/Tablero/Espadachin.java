@@ -1,4 +1,4 @@
-package Final;
+package Tablero;
 public class Espadachin extends Soldado {
 
     private int vida;

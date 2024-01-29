@@ -1,4 +1,4 @@
-package Final;
+package Tablero;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;

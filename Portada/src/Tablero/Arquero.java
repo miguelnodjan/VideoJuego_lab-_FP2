@@ -1,4 +1,4 @@
-package Final;
+package Tablero;
 
 public class Arquero extends Soldado{
     private int ataque;

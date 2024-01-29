@@ -1,4 +1,4 @@
-package Final;
+package Tablero;
 public class Lancero extends Soldado {
 
     private int vida;

@@ -1,4 +1,4 @@
-package Final;
+package Tablero;
 
 public class Soldado {
     private int fila;
